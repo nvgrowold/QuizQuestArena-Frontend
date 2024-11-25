@@ -89,81 +89,155 @@ function AdminProfile() {
   };
 
   return (
-    <div className="form">
+    <div className="form flex justify-center items-center min-h-screen bg-gray-100">
       {user ? (
-        <form onSubmit={handleSave}>
-          <h1>Admin Profile</h1>
-          <label>User ID:</label>
-          <input type="text" value={user.id} readOnly />
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={handleInputChange}
-            required
-          />
-          <label>First Name:</label>
-          <input
-            type="text"
-            name="firstName"
-            value={user.firstName}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Last Name:</label>
-          <input
-            type="text"
-            name="lastName"
-            value={user.lastName}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Email:</label>
-          <input type="email" value={user.email} readOnly />
-          <label>Phone Number:</label>
-          <input
-            type="text"
-            name="phoneNumber"
-            value={user.phoneNumber}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Address:</label>
-          <input
-            type="text"
-            name="address"
-            value={user.address}
-            onChange={handleInputChange}
-            required
-          />
-          <label>Role:</label>
-          <input type="text" value={user.role} readOnly />
-          <label>Profile Picture:</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange} // Handle file selection
-          />
-
-          <button type="submit" className="save-button">
+        <form 
+          onSubmit={handleSave} 
+          className="w-full max-w-md bg-white p-6 rounded-lg shadow-md space-y-4"
+        >
+          <h1 className="text-2xl font-bold text-center mb-4">Admin Profile</h1>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">User ID:</label>
+            <input 
+              type="text" 
+              value={user.id} 
+              readOnly 
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">Username:</label>
+            <input
+              type="text"
+              name="username"
+              value={user.username}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">First Name:</label>
+            <input
+              type="text"
+              name="firstName"
+              value={user.firstName}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">Last Name:</label>
+            <input
+              type="text"
+              name="lastName"
+              value={user.lastName}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">Email:</label>
+            <input 
+              type="email" 
+              value={user.email} 
+              readOnly 
+              className="w-full px-3 py-2 border rounded-lg bg-gray-100 cursor-not-allowed"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">Phone Number:</label>
+            <input
+              type="text"
+              name="phoneNumber"
+              value={user.phoneNumber}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">Address:</label>
+            <input
+              type="text"
+              name="address"
+              value={user.address}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">Role:</label>
+            <input 
+              type="text" 
+              value={user.role} 
+              readOnly 
+              className="w-full px-3 py-2 border rounded-lg bg-gray-100 cursor-not-allowed"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">Profile Picture:</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="w-full px-3 py-2 border rounded-lg file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
             Save
           </button>
-
-          <div>
-            <a href="/quizScoresPage">View Quiz Scores</a>
-            <a href="/create-quiz">Create A New Quiz Tournament</a>
-            <a href="/manage-quizzes">Manage All Quiz Tournaments</a>
+          
+          <div className="flex flex-col items-center space-y-2 mt-4">
+            <a 
+              href="/quizScoresPage" 
+              className="text-blue-600 hover:underline"
+            >
+              View Quiz Scores
+            </a>
+            <a 
+              href="/create-quiz" 
+              className="text-blue-600 hover:underline"
+            >
+              Create A New Quiz Tournament
+            </a>
+            <a 
+              href="/manage-quizzes" 
+              className="text-blue-600 hover:underline"
+            >
+              Manage All Quiz Tournaments
+            </a>
           </div>
-
-          <button type="button" onClick={handleLogout} className="logout-button">
+          
+          <button 
+            type="button" 
+            onClick={handleLogout} 
+            className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 mt-4"
+          >
             Logout
           </button>
         </form>
       ) : (
-        <p>{errorMessage}</p>
+        <p className="text-center text-red-500">{errorMessage}</p>
       )}
     </div>
+
   );
 }
 
