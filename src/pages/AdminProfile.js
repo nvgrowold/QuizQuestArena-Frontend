@@ -4,12 +4,16 @@ import { useNavigate } from 'react-router-dom';
 function AdminProfile() {
   const [user, setUser] = useState(null); // State to store user data
   const [errorMessage, setErrorMessage] = useState(''); // State for error messages
+  const [successMessage, setSuccessMessage] = useState("");
   const [profilePicture, setProfilePicture] = useState(null); // State to store uploaded profile picture
+  const [loading, setLoading] = useState(false); // State to manage loading state
   const navigate = useNavigate();
 
   // Fetch admin profile data on component load
   useEffect(() => {
     const fetchAdminProfile = async () => {
+      console.log('Fetching user profile...');
+      setLoading(true);
       try {
         const response = await fetch('/api/users/adminProfile', {
           method: 'GET',
@@ -25,20 +29,24 @@ function AdminProfile() {
         }
       } catch (error) {
         setErrorMessage('An error occurred while fetching the profile.');
+      } finally {
+      setLoading(false); // Stop loading
       }
     };
 
     fetchAdminProfile();
   }, []);
 
-  // Handle changes to text input fields
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUser((prevUser) => ({
-      ...prevUser,
-      [name]: value,
-    }));
-  };
+    // Handle input changes
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setSuccessMessage("");
+      setErrorMessage("");
+      setUser((prevUser) => ({
+        ...prevUser,
+        [name]: value,
+      }));
+    };
 
   // Handle file input for profile picture
   const handleFileChange = (e) => {
@@ -48,30 +56,39 @@ function AdminProfile() {
   // Save updated profile, including the profile picture
   const handleSave = async (e) => {
     e.preventDefault();
-    const formData = new FormData(); // Create FormData to handle file uploads
-    Object.keys(user).forEach((key) => {
-      formData.append(key, user[key]); // Add user data to FormData
-    });
+    setLoading(true); // Show loading state
+    setErrorMessage(''); // Clear previous error message
+    setSuccessMessage("");
 
-    if (profilePicture) {
-      formData.append('profilePicture', profilePicture); // Add profile picture if present
-    }
+    // const formData = new FormData(); // Create FormData to handle file uploads
+    // Object.keys(user).forEach((key) => {
+    //   formData.append(key, user[key]); // Add user data to FormData
+    // });
+
+    // if (profilePicture) {
+    //   formData.append('profilePicture', profilePicture); // Add profile picture if present
+    // }
 
     try {
-      const response = await fetch(`/api/users/updateProfile/${user.id}`, {
-        method: 'POST',
-        body: formData,
+      const response = await fetch(`/api/users/${user.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json', // Set content type to JSON
+        },
+        body: JSON.stringify(user), // Convert user object to JSON
         credentials: 'include', // Include cookies for session handling
       });
 
       if (response.ok) {
-        alert('Profile updated successfully!');
+        setSuccessMessage("Profile updated successfully!");
       } else {
         const error = await response.text();
-        setErrorMessage(error);
+        setErrorMessage(error || "Failed to update profile.");
       }
     } catch (error) {
       setErrorMessage('An error occurred while saving the profile.');
+    }finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -87,6 +104,7 @@ function AdminProfile() {
       console.error('Logout failed:', error);
     }
   };
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div className="form flex justify-center items-center min-h-screen bg-gray-100">
@@ -96,7 +114,10 @@ function AdminProfile() {
           className="w-full max-w-md bg-white p-6 rounded-lg shadow-md space-y-4"
         >
           <h1 className="text-2xl font-bold text-center mb-4">Admin Profile</h1>
-          
+           {/* Success and Error Messages */}
+           {successMessage && <p className="text-green-500 text-center font-semibold">{successMessage}</p>}
+          {errorMessage && <p className="text-red-500 text-center font-semibold">{errorMessage}</p>}
+
           <div>
             <label className="block text-gray-700 font-semibold mb-1">User ID:</label>
             <input 

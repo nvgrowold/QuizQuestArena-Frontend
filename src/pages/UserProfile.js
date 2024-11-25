@@ -65,15 +65,19 @@ function UserProfile() {
     setSuccessMessage("");
 
     try {
-      const formData = new FormData();
-      formData.append("user", JSON.stringify(user)); // Add user details
-      if (profilePicture) {
-        formData.append("profilePicture", profilePicture); // Add profile picture
-      }
+      // const formData = new FormData();
+      // formData.append("user", JSON.stringify(user)); // Add user details
+      // if (profilePicture) {
+      //   formData.append("profilePicture", profilePicture); // Add profile picture
+      // }
 
-      const response = await fetch(`/api/users/updateProfile/${user.id}`, {
-        method: "POST",
-        body: formData,
+      const response = await fetch(`/api/users/${user.id}`, {
+        method: "put",
+        // body: formData,
+        headers: {
+          "Content-Type": "application/json", // Send JSON data
+        },
+        body: JSON.stringify(user), // Convert user object to JSON
         credentials: "include",
       });
 
