@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserProfile() {
   const [user, setUser] = useState(null);
@@ -239,18 +239,17 @@ function UserProfile() {
 
           {/* Links */}
           <div className="flex flex-col items-center space-y-2 mt-4">
-            <a 
-              href="/viewAllQuizzes" 
+            <Link 
+              to="/viewAllQuizzes" 
               className="text-blue-600 hover:underline"
             >
               View All Quizzes
-            </a>
-            <a 
-              href="/quizScoresPage" 
+            </Link>
+            <Link to="/quizScoresRanking" 
               className="text-blue-600 hover:underline"
             >
-              View Scores
-            </a>
+              Quiz Scores Ranking
+            </Link>
           </div>
 
           {/* Logout Button */}

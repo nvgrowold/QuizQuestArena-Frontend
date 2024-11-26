@@ -8,6 +8,7 @@ import UserProfile from './pages/UserProfile';
 import AdminProfile from './pages/AdminProfile';
 import PasswordResetRequest from './pages/PasswordResetRequest';
 import ResetPassword from './pages/ResetPassword';
+import QuizScoresRanking from './pages/QuizScoresRanking';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/adminProfile" element={<AdminProfile />} />
         <Route path="/password-reset" element={<PasswordResetRequest />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/quizScoresRanking" element={<QuizScoresRanking />} />
+
         <Route path="/error" element={<ErrorPage />} />
         {/* Redirect all undefined routes to the ErrorPage with 404 details */}
         <Route path="*" element={<Navigate to="/error" state={{ message: 'Page not found!', status: '404' }} replace/>}/>
