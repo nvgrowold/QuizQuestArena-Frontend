@@ -6,6 +6,8 @@ import ErrorPage from './pages/ErrorPage';
 import Login from './pages/Login';
 import UserProfile from './pages/UserProfile';
 import AdminProfile from './pages/AdminProfile';
+import PasswordResetRequest from './pages/PasswordResetRequest';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/adminProfile" element={<AdminProfile />} />
+        <Route path="/password-reset" element={<PasswordResetRequest />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/error" element={<ErrorPage />} />
         {/* Redirect all undefined routes to the ErrorPage with 404 details */}
         <Route path="*" element={<Navigate to="/error" state={{ message: 'Page not found!', status: '404' }} replace/>}/>

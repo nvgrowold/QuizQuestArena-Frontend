@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState(''); // State to store username
@@ -90,8 +90,8 @@ function Login() {
           />
         </div>
         <div className="links">
-          <a href="/password/password-reset">Forgot Password?</a>
-          <a href="/register">Navigate to Register</a>
+          <Link to="/password-reset">Forgot Password?</Link>
+          <Link to="/register">Navigate to Register</Link>
         </div>
       </form>
     </div>
