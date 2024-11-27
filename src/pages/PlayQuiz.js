@@ -91,10 +91,32 @@ const PlayQuiz = () => {
           console.error("Error loading next question:", error);
         }
       } else {
+        // Fetch completion data from the backend
+    try {
+        const response = await fetch(`/api/quizzes/play/${quizId}/complete`, {
+          method: "GET",
+          credentials: "include",
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
         // Navigate to the completion page
-        navigate(`/quizzes/play/${quizId}/complete`);
+            navigate(`/quizComplete`, { 
+                state: {
+                finalScore: data.finalScore,
+                totalQuestions: data.totalQuestions,
+                feedbackList: data.feedbackList,
+                quizId: quizId,
+            },
+        });
+      }else {
+        console.error("Failed to fetch quiz completion data.");
       }
-    };
+    } catch (error) {
+      console.error("Error completing quiz:", error);
+    }
+  }
+};
 
   if (!quiz || !question) return <p>Loading...</p>;
 

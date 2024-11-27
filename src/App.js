@@ -13,6 +13,7 @@ import ViewAllQuizzes from './pages/ViewAllQuizzes';
 import CreateQuiz from './pages/CreateQuiz';
 import ManageQuizzes from './pages/ManageQuizzes';
 import PlayQuiz from './pages/PlayQuiz';
+import QuizComplete from './pages/QuizComplete';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/createQuiz" element={<CreateQuiz />} />
         <Route path="/manageQuizzes" element={<ManageQuizzes />} />
         <Route path="/play/:quizId" element={<PlayQuiz />} />
+        <Route path="/quizComplete" element={<QuizComplete />} />
 
         <Route path="/error" element={<ErrorPage />} />
         {/* Redirect all undefined routes to the ErrorPage with 404 details */}
