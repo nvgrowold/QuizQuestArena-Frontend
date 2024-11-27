@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ViewAllQuizzes = () => {
   const [quizzes, setQuizzes] = useState({
@@ -64,7 +65,7 @@ const ViewAllQuizzes = () => {
               <th>End Date</th>
               <th>Likes</th>
               <th>Total Participants</th>
-              {showPlayButton && <th>Play Now</th>}
+              {showPlayButton && <th>Action</th>}
             </tr>
           </thead>
           <tbody>
@@ -80,9 +81,9 @@ const ViewAllQuizzes = () => {
                 <td>{quiz.totalParticipants || 0}</td>
                 {showPlayButton && (
                   <td>
-                    <a href={`/quizzes/play/${quiz.id}`} className="join-button">
+                    <Link to={`/play/${quiz.id}`} className="join-button">
                       Join
-                    </a>
+                    </Link>
                   </td>
                 )}
               </tr>
