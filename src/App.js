@@ -9,6 +9,7 @@ import AdminProfile from './pages/AdminProfile';
 import PasswordResetRequest from './pages/PasswordResetRequest';
 import ResetPassword from './pages/ResetPassword';
 import QuizScoresRanking from './pages/QuizScoresRanking';
+import ViewAllQuizzes from './pages/ViewAllQuizzes';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/password-reset" element={<PasswordResetRequest />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/quizScoresRanking" element={<QuizScoresRanking />} />
+        <Route path="/viewAllQuizzes" element={<ViewAllQuizzes />} />
 
         <Route path="/error" element={<ErrorPage />} />
         {/* Redirect all undefined routes to the ErrorPage with 404 details */}
