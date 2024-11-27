@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function AdminProfile() {
   const [user, setUser] = useState(null); // State to store user data
@@ -226,24 +226,24 @@ function AdminProfile() {
           </button>
           
           <div className="flex flex-col items-center space-y-2 mt-4">
-            <a 
-              href="/quizScoresPage" 
+            <Link 
+              to="/quizScoresRanking" 
               className="text-blue-600 hover:underline"
             >
-              View Quiz Scores
-            </a>
-            <a 
-              href="/create-quiz" 
+              View Quiz Scores Ranking
+            </Link>
+            <Link 
+              to="/createQuiz" 
               className="text-blue-600 hover:underline"
             >
               Create A New Quiz Tournament
-            </a>
-            <a 
-              href="/manage-quizzes" 
+            </Link>
+            <Link 
+              to="/manage-quizzes" 
               className="text-blue-600 hover:underline"
             >
               Manage All Quiz Tournaments
-            </a>
+            </Link>
           </div>
           
           <button 
