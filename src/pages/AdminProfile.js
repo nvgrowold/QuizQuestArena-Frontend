@@ -239,7 +239,7 @@ function AdminProfile() {
               Create A New Quiz Tournament
             </Link>
             <Link 
-              to="/manage-quizzes" 
+              to="/manageQuizzes" 
               className="text-blue-600 hover:underline"
             >
               Manage All Quiz Tournaments

@@ -11,6 +11,7 @@ import ResetPassword from './pages/ResetPassword';
 import QuizScoresRanking from './pages/QuizScoresRanking';
 import ViewAllQuizzes from './pages/ViewAllQuizzes';
 import CreateQuiz from './pages/CreateQuiz';
+import ManageQuizzes from './pages/ManageQuizzes';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/quizScoresRanking" element={<QuizScoresRanking />} />
         <Route path="/viewAllQuizzes" element={<ViewAllQuizzes />} />
         <Route path="/createQuiz" element={<CreateQuiz />} />
+        <Route path="/manageQuizzes" element={<ManageQuizzes />} />
 
         <Route path="/error" element={<ErrorPage />} />
         {/* Redirect all undefined routes to the ErrorPage with 404 details */}
