@@ -4,6 +4,7 @@ import { useLocation,Link } from "react-router-dom";
 const QuizComplete = () => {
     const location = useLocation();
     const { finalScore = 0, totalQuestions = 0, feedbackList = [], quizId } = location.state || {};
+    console.log("Feedback List:", feedbackList);
 
   return (
     <div className="quiz-complete-container">

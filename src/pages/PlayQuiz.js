@@ -12,6 +12,7 @@ const PlayQuiz = () => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(null); // Add a state for isCorrect
 
   // Fetch the quiz and questions on load
   useEffect(() => {
@@ -44,7 +45,8 @@ const PlayQuiz = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const answer = formData.get("answer");
+    const answer = formData.get("answer").trim();
+    console.log("Submitted Answer:", answer); // Log the submitted answer
     try {
       const response = await fetch(`/api/quizzes/play/${quizId}/question/${currentQuestionIndex}/submit`,
         {
@@ -57,7 +59,9 @@ const PlayQuiz = () => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log("Response from submitAnswer API:", data); // Log the response from the API
         setFeedbackMessage(data.feedbackMessage);
+        setIsCorrect(data.isCorrect); // Update isCorrect
         setAnswerSubmitted(true);
       } else {
         console.error("Failed to submit answer.");
@@ -153,7 +157,7 @@ const PlayQuiz = () => {
 
       {feedbackMessage && (
         <div className="mt-4">
-          <p className="text-green-500">{feedbackMessage}</p>
+          <p className={isCorrect ? "text-green-500" : "text-red-500"}>{feedbackMessage}</p>
           <button
             onClick={handleNextQuestion}
             className="bg-green-500 text-white px-4 py-2 rounded mt-4"
