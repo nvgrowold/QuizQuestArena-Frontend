@@ -52,7 +52,7 @@ function Login() {
   };
 
   return (
-    <div className="form">
+     <div className='form text-white max-w-[800px] h-full w-full h- mx-auto text-center flex flex-col justify-center'>
       <form onSubmit={handleLogin}>
         <h2>Login</h2>
         {errorMessage && <p className="error">{errorMessage}</p>} {/* Display error message if any */}

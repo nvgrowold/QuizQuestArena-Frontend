@@ -15,14 +15,25 @@ const Navbar = () => {
       setIsMenuOpen(false);
     };
 
-    //don't show the menu in home page, only show logo
-    const isHomePage = location.pathname === "/";
+  // List of routes where the menu should be hidden
+  const noMenuRoutes = ["/", "/login", "/register", "/password-reset", "/error"];
+
+  // Check if the current path matches any of the noMenuRoutes
+  const shouldHideMenu = noMenuRoutes.includes(location.pathname);
+
+    // // List of routes where the navbar should not be displayed
+    // const hiddenRoutes = ["/", "/login", "/register", "/password-reset", "/error"];
+
+    // // Check if the current path matches any of the hidden routes
+    // if (hiddenRoutes.includes(location.pathname)) {
+    //   return null; // Don't render the navbar
+    // }
 
   return (
     <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
       <h1 className='w-full text-3xl font-bold text-[#00df9a]'>QUIZ.</h1>
       {/* desktop menu */}
-      {!isHomePage && (
+      {!shouldHideMenu && (
         <ul className='hidden md:flex'>
         <li className='p-4'>
             <Link to="/" >Home</Link>
@@ -43,7 +54,7 @@ const Navbar = () => {
       )}
 
       {/* hamburger icon */}
-      {!isHomePage && (
+      {!shouldHideMenu && (
         <div onClick={toggleMenu} className='block md:hidden cursor-pointer' aria-expanded={isMenuOpen}>
           {/*if isMenuOpen is true then show AiOutlineClose, else show AiOutlineMenu */}
           {!isMenuOpen ? <AiOutlineMenu size={20}/> : <AiOutlineClose size={20}/>}
@@ -51,7 +62,7 @@ const Navbar = () => {
       )}
 
       {/* mobile menu */}
-      {!isHomePage && (
+      {!shouldHideMenu && (
         <ul className={`fixed top-0 left-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] z-50 ease-in-out duration-500
                   ${isMenuOpen ? 'left-0' : 'left-[-100%]'}`} >
         <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>QUIZ.</h1>

@@ -15,32 +15,35 @@ import PlayQuiz from './pages/PlayQuiz';
 import QuizComplete from './pages/QuizComplete';
 
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
    <div>
     <Router>
-        {/* Ensure Navbar is inside Router */}
+      {/* Ensure Navbar is inside Router */}
       <Navbar />
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/register' element={<Register/>}/>
-        <Route path="/login" element={<Login />} />
-        <Route path="/userProfile" element={<UserProfile />} />
-        <Route path="/adminProfile" element={<AdminProfile />} />
-        <Route path="/password-reset" element={<PasswordResetRequest />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/quizScoresRanking" element={<QuizScoresRanking />} />
-        <Route path="/viewAllQuizzes" element={<ViewAllQuizzes />} />
-        <Route path="/createQuiz" element={<CreateQuiz />} />
-        <Route path="/manageQuizzes" element={<ManageQuizzes />} />
-        <Route path="/play/:quizId" element={<PlayQuiz />} />
-        <Route path="/quizComplete" element={<QuizComplete />} />
+      {/* Main content area that grows */}
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/register' element={<Register/>}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/adminProfile" element={<AdminProfile />} />
+          <Route path="/password-reset" element={<PasswordResetRequest />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/quizScoresRanking" element={<QuizScoresRanking />} />
+          <Route path="/viewAllQuizzes" element={<ViewAllQuizzes />} />
+          <Route path="/createQuiz" element={<CreateQuiz />} />
+          <Route path="/manageQuizzes" element={<ManageQuizzes />} />
+          <Route path="/play/:quizId" element={<PlayQuiz />} />
+          <Route path="/quizComplete" element={<QuizComplete />} />
 
-        <Route path="/error" element={<ErrorPage />} />
-        {/* Redirect all undefined routes to the ErrorPage with 404 details */}
-        <Route path="*" element={<Navigate to="/error" state={{ message: 'Page not found!', status: '404' }} replace/>}/>
-      </Routes>
+          <Route path="/error" element={<ErrorPage />} />
+          {/* Redirect all undefined routes to the ErrorPage with 404 details */}
+          <Route path="*" element={<Navigate to="/error" state={{ message: 'Page not found!', status: '404' }} replace/>}/>
+        </Routes>
+      <Footer />
     </Router>
    </div>
   );
