@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from "./pages/Home";
 import Register from './pages/Register';
@@ -15,10 +14,14 @@ import ManageQuizzes from './pages/ManageQuizzes';
 import PlayQuiz from './pages/PlayQuiz';
 import QuizComplete from './pages/QuizComplete';
 
+import Navbar from './components/Navbar';
+
 function App() {
   return (
    <div>
     <Router>
+        {/* Ensure Navbar is inside Router */}
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/register' element={<Register/>}/>
