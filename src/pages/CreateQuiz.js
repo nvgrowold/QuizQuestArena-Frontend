@@ -80,8 +80,8 @@ const CreateQuiz = () => {
             <div className="bg-slate-800 border border-slate-600 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-2xl bg-transparent bg-opacity-10 relative">
               <form onSubmit={handleSubmit}>
                 <h1 className="text-4xl font-bold text-center mb-8">Create Quiz Tournament</h1>
-                {loading && <p className="text-green-500">Loading...</p>}
-                {message && <p className="text-green-500 text-center mb-4">{message}</p>}
+                {loading && <p className="text-[#00df9a]">Loading...</p>}
+                {message && <p className="text-[#00df9a] text-center mb-4">{message}</p>}
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
     
                 <div className='w-full'>

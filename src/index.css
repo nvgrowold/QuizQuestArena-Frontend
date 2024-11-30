@@ -25,3 +25,24 @@ input:-webkit-autofill:active {
 input {
   background-color: transparent !important;
 }
+
+/* Webkit-based browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b; /* Track background color */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #00df9a; /* Thumb color */
+  border-radius: 8px; /* Rounded corners for the thumb */
+  border: 3px solid #1e293b; /* Padding around the thumb */
+}
+
+/* Firefox-specific styling */
+html {
+  scrollbar-width: thin; /* Makes the scrollbar thinner */
+  scrollbar-color: #00df9a #1e293b; /* Thumb color and track color */
+}
