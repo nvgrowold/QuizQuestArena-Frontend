@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const PlayQuiz = () => {
   const { quizId } = useParams(); // Get the quiz ID from the URL
@@ -125,49 +127,62 @@ const PlayQuiz = () => {
   if (!quiz || !question) return <p>Loading...</p>;
 
   return (
-    <div className="quiz-container">
-      <h1 className="text-2xl font-bold mb-4">{quiz.name}</h1>
-      <p>
-        Question {currentQuestionIndex + 1} of {totalQuestions}
-      </p>
-
-      <form onSubmit={handleSubmit}>
-        <p className="mb-4">{question.text}</p>
-        <ul>
-          {question.options.map((option, index) => (
-            <li key={index}>
-              <input
-                type="radio"
-                id={`option-${index}`}
-                name="answer"
-                value={option.optionText} // Use optionText from OptionsDTO
-                required
-                disabled={answerSubmitted}
-              />
-              <label htmlFor={`option-${index}`}>{option.optionText}</label>
-            </li>
-          ))}
-        </ul>
-        {!answerSubmitted && (
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded mt-4">
-            Submit Answer
-          </button>
+    <div>
+      <Navbar />
+      <div className="quiz-container max-w-[800px] mx-auto h-[55vh] my-16 p-6 bg-gray-800 rounded-md shadow-lg text-white">
+        <h1 className="text-3xl font-bold my-4 text-center text-[#00df9a]">{quiz.name}</h1>
+        <p className="text-lg mb-4 text-center">
+          Question {currentQuestionIndex + 1} of {totalQuestions}
+        </p>
+    
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <p className="mb-4 text-lg text-[#00d4ff]">{question.text}</p>
+          <ul className="space-y-2 mb-4">
+            {question.options.map((option, index) => (
+              <li key={index} className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  id={`option-${index}`}
+                  name="answer"
+                  value={option.optionText} // Use optionText from OptionsDTO
+                  required
+                  disabled={answerSubmitted}
+                  className="w-4 h-4 text-[#00df9a] focus:ring-[#00df9a] focus:ring-2"
+                />
+                <label
+                  htmlFor={`option-${index}`}
+                  className="text-gray-300 cursor-pointer"
+                >
+                  {option.optionText}
+                </label>
+              </li>
+            ))}
+          </ul>
+          {!answerSubmitted && (
+            <button
+              type="submit"
+              className='w-full mt-8 text-[18px] rounded bg-[#52529d] py-2 hover:bg-[#00df9a] transition-colors duration-300 cursor-pointer'
+            >
+              Submit Answer
+            </button>
+          )}
+        </form>
+    
+        {feedbackMessage && (
+          <div className="mb-2 text-center">
+            <p className={isCorrect ? "text-[#00d4ff]" : "text-[#d7788b]"}>{feedbackMessage}</p>
+            <button
+              onClick={handleNextQuestion}
+              className='w-full my-4 text-[18px] rounded bg-[#52529d] py-2 hover:bg-[#00df9a] transition-colors duration-300 cursor-pointer'
+            >
+              {currentQuestionIndex + 1 < totalQuestions ? "Next Question" : "Finish Quiz"}
+            </button>
+          </div>
         )}
-      </form>
-
-      {feedbackMessage && (
-        <div className="mt-4">
-          <p className={isCorrect ? "text-green-500" : "text-red-500"}>{feedbackMessage}</p>
-          <button
-            onClick={handleNextQuestion}
-            className="bg-green-500 text-white px-4 py-2 rounded mt-4"
-          >
-            {currentQuestionIndex + 1 < totalQuestions ? "Next Question" : "Finish Quiz"}
-          </button>
-        </div>
-      )}
+      </div>
+      <Footer/>
     </div>
-  );
+  );  
 };
 
 export default PlayQuiz;
