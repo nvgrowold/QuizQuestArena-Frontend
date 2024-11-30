@@ -64,8 +64,13 @@ function Login() {
         <h1 className='text-4xl font-bold text-center mb-8'>Login</h1>
           {errorMessage && <p className="error">{errorMessage}</p>} {/* Display error message if any */}
           <div className="relative my-4">
-            <input type='text'className='block w-72 py-2.5 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-[#52529d] appearance-none dark:focus:border-[#00df9a] focus:outline-none focus:ring-0 focus:text-white focus:border-[#00df9a] peer' placeholder=''/>
-            <label htmlFor='' className='absolute text-sm duration-300 transform -translate scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#00df9a] peer-focus:dark:text-[#00df9a] peer-placeholder-shown:scale-100 peer-focus:scale-75 peer-focus:-translate-y-6'>Username</label>
+            <input type='text'className='block w-72 py-2.5 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-[#52529d] appearance-none dark:focus:border-[#00df9a] focus:outline-none focus:ring-0 focus:text-white focus:border-[#00df9a] peer' 
+                  placeholder=''
+                  value={username} // Bind value to username state
+                  onChange={(e) => setUsername(e.target.value)} // Update state on input change
+                  required
+                  />
+            <label htmlFor='' className='absolute text-sm duration-300 transform -translate scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#00df9a] peer-focus:dark:text-[#00df9a] peer-placeholder-shown:scale-100 peer-valid:scale-75 peer-valid:-translate-y-6'>Username</label>
           </div>
           <div className="relative my-8">
           <input type='password'className='block w-72 py-2.5 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-[#52529d] appearance-none dark:focus:border-[#00df9a] focus:outline-none focus:ring-0 focus:text-white focus:border-[#00df9a] peer' placeholder=''
@@ -76,15 +81,17 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)} // Update state on input change
               disabled={loading} // Disable input when loading
               />
-                <label htmlFor='' className='absolute text-sm duration-300 transform -translate scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#00df9a] peer-focus:dark:text-[#00df9a] peer-placeholder-shown:scale-100 peer-focus:scale-75 peer-focus:-translate-y-6'>Your Password</label>
+                <label htmlFor='' className='absolute text-sm duration-300 transform -translate scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#00df9a] peer-focus:dark:text-[#00df9a] peer-placeholder-shown:scale-100 peer-valid:scale-75 peer-valid:-translate-y-6'>Your Password</label>
           </div>
           <div className="input-box mt-8">
-            <input
+            <button
               type="submit"
               className='w-full mb-4 text-[18px] rounded bg-[#52529d] py-2 hover:bg-[#00df9a] transition-colors duration-300 cursor-pointer'
               value={loading ? 'Logging in...' : 'Login'} // Show loading text during API call
               disabled={loading} // Disable button when loading
-            />
+              >
+                Login
+              </button>
           </div>
           <div className="links text-xs flex justify-between items-center mt-4">
             <Link to="/password-reset" className="hover:text-[#00df9a]">Forgot Password?</Link>

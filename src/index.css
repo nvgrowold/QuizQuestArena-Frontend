@@ -5,4 +5,23 @@
 body {
     background: rgb(2,0,36);
     background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(82,82,157,1) 36%, rgba(0,212,255,1) 100%);
-} 
+}
+
+/* remove white backgroung color for autocomplete input field */
+/* Ensure autofill fields are fully transparent */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: transparent !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important; /* Ensure transparency */
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Ensure transparency for WebKit browsers */
+  -webkit-text-fill-color: white !important; /* Text remains white */
+  caret-color: white; /* Cursor matches text color */
+  transition: background-color 5000s ease-in-out 0s; /* Smooth transition to prevent flashing */
+}
+
+/* Ensure input fields remain transparent */
+input {
+  background-color: transparent !important;
+}
