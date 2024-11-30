@@ -14,16 +14,12 @@ import ManageQuizzes from './pages/ManageQuizzes';
 import PlayQuiz from './pages/PlayQuiz';
 import QuizComplete from './pages/QuizComplete';
 
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-
 function App() {
   return (
-   <div>
+   <div className='flex flex-col min-h-screen'>
     <Router>
-      {/* Ensure Navbar is inside Router */}
-      <Navbar />
       {/* Main content area that grows */}
+      <div className="flex-grow h-[60vh]">
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/register' element={<Register/>}/>
@@ -43,7 +39,7 @@ function App() {
           {/* Redirect all undefined routes to the ErrorPage with 404 details */}
           <Route path="*" element={<Navigate to="/error" state={{ message: 'Page not found!', status: '404' }} replace/>}/>
         </Routes>
-      <Footer />
+        </div>  
     </Router>
    </div>
   );

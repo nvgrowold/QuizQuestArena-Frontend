@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ReactTyped as Typed } from 'react-typed'; //npm install react-typed --save
+import Navbar from '../components/Navbar';
 
 const HomePage = () => {
     return (
         <div className="text-white">
+            <Navbar/>
             <div className='max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center'>
                 <p className='text-[#00df9a] font-bold p-2 text-2xl'>
                     STEP INTO THE ULTIMATE QUIZ ADVENTURE!
