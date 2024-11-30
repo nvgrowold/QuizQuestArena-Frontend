@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const ViewAllQuizzes = () => {
   const [quizzes, setQuizzes] = useState({
@@ -49,58 +51,75 @@ const ViewAllQuizzes = () => {
   }
 
   const renderTable = (quizList = [], title, showPlayButton = false) => (
-    <div>
-      <h2>{title}</h2>
+    <div className="mb-8">
+      <h2 className="text-2xl font-bold text-center text-[#00df9a] mb-4">{title}</h2>
       {quizList.length === 0 ? (
-        <p>No {title.toLowerCase()} at the moment.</p>
+        <p className="text-center text-gray-400">No {title.toLowerCase()} at the moment.</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Quiz ID</th>
-              <th>Quiz Name</th>
-              <th>Category</th>
-              <th>Difficulty</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Likes</th>
-              <th>Total Participants</th>
-              {showPlayButton && <th>Action</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {quizList.map((quiz) => (
-              <tr key={quiz.id}>
-                <td>{quiz.id}</td>
-                <td>{quiz.name}</td>
-                <td>{quiz.category || "N/A"}</td>
-                <td>{quiz.difficulty || "N/A"}</td>
-                <td>{quiz.startDate ? new Date(quiz.startDate).toLocaleString() : "N/A"}</td>
-                <td>{quiz.endDate ? new Date(quiz.endDate).toLocaleString() : "N/A"}</td>
-                <td>{quiz.likes || 0}</td>
-                <td>{quiz.totalParticipants || 0}</td>
-                {showPlayButton && (
-                  <td>
-                    <Link to={`/play/${quiz.id}`} className="join-button">
-                      Join
-                    </Link>
-                  </td>
-                )}
+        <div className="overflow-x-auto max-h-[300px] overflow-y-auto border border-gray-700 rounded-lg shadow-md">
+          <table className="w-full text-sm text-left text-gray-300">
+            <thead className="text-xs uppercase bg-gray-700 text-gray-400 sticky top-0 z-10">
+              <tr>
+                <th className="px-6 py-3">Quiz ID</th>
+                <th className="px-6 py-3">Quiz Name</th>
+                <th className="px-6 py-3">Category</th>
+                <th className="px-6 py-3">Difficulty</th>
+                <th className="px-6 py-3">Start Date</th>
+                <th className="px-6 py-3">End Date</th>
+                <th className="px-6 py-3">Likes</th>
+                <th className="px-6 py-3">Total Participants</th>
+                {showPlayButton && <th className="px-6 py-3">Action</th>}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {quizList.map((quiz, index) => (
+                <tr
+                  key={index}
+                  className={`border-b ${
+                    index % 2 === 0 ? "bg-gray-800" : "bg-gray-900"
+                  } hover:bg-gray-700`}
+                >
+                  <td className="px-6 py-4">{quiz.id}</td>
+                  <td className="px-6 py-4">{quiz.name}</td>
+                  <td className="px-6 py-4">{quiz.category || "N/A"}</td>
+                  <td className="px-6 py-4">{quiz.difficulty || "N/A"}</td>
+                  <td className="px-6 py-4">
+                    {quiz.startDate ? new Date(quiz.startDate).toLocaleString() : "N/A"}
+                  </td>
+                  <td className="px-6 py-4">
+                    {quiz.endDate ? new Date(quiz.endDate).toLocaleString() : "N/A"}
+                  </td>
+                  <td className="px-6 py-4">{quiz.likes || 0}</td>
+                  <td className="px-6 py-4">{quiz.totalParticipants || 0}</td>
+                  {showPlayButton && (
+                    <td className="px-6 py-4">
+                      <button className="text-[#00df9a] hover:underline">
+                        Join
+                      </button>
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
 
   return (
-    <div className="view-all-quizzes">
-      <h1>View All Quizzes</h1>
-      {renderTable(quizzes.ongoingQuizzes, "Ongoing Quizzes", true)}
-      {renderTable(quizzes.upcomingQuizzes, "Upcoming Quizzes")}
-      {renderTable(quizzes.pastQuizzes, "Past Quizzes")}
-      {renderTable(quizzes.participatedQuizzes, "Participated Quizzes")}
+    <div>
+      <Navbar />
+      <div className="flex-1 overflow-y-auto max-w-[1240px] mx-auto h-[70vh] text-white flex flex-col items-center bg-cover">
+        <div className="bg-slate-800 border border-slate-600 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-2xl bg-transparent bg-opacity-10 relative w-full">
+          <h1 className="text-4xl font-bold text-center text-white mb-8">View All Quizzes</h1>
+          {renderTable(quizzes.ongoingQuizzes, "Ongoing Quizzes", true)}
+          {renderTable(quizzes.upcomingQuizzes, "Upcoming Quizzes")}
+          {renderTable(quizzes.pastQuizzes, "Past Quizzes")}
+          {renderTable(quizzes.participatedQuizzes, "Participated Quizzes")}
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
