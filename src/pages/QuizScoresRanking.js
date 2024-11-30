@@ -1,13 +1,32 @@
 import React, { useState, useEffect } from "react";
 import NavbarAdmin from "../components/NavbarAdmin";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const QuizScoresRanking = () => {
   const [scores, setScores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
+ // Fetch user profile to determine role
+    const fetchUserRole = async () => {
+      try {
+        const response = await fetch("/api/users/userProfile", {
+          credentials: "include", // Ensure session cookies are sent
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch user profile.");
+        }
+        const data = await response.json();
+        setUserRole(data.role); // Set the role (e.g., ROLE_ADMIN or ROLE_PLAYER)
+      } catch (err) {
+        console.error(err.message);
+        setError("Unable to determine user role.");
+      }
+    };
+
     // Fetch scores from the REST API
     fetch("/api/quizzes/quizScoresRanking")
       .then((response) => {
@@ -36,7 +55,9 @@ const QuizScoresRanking = () => {
 
   return (
     <div>
-      <NavbarAdmin />
+      {/* Conditional Navbar Rendering */}
+      {userRole === "ROLE_ADMIN" ? <NavbarAdmin /> : <Navbar />}
+
       <div className="flex-1 overflow-y-auto max-w-[1240px] mx-auto h-[70vh] items-center text-white flex justify-center bg-cover">
         <div className="overflow-y-auto mt-auto bg-slate-800 border border-slate-600 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-2xl bg-transparent bg-opacity-10 relative w-full">
           <h1 className="text-4xl font-bold text-center mb-8">Quiz Scores Ranking</h1>
