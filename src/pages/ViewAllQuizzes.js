@@ -43,14 +43,14 @@ const ViewAllQuizzes = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading quizzes...</p>;
+    return <p className="text-[#00df9a] text-center mt-4">Loading quizzes...</p>;
   }
 
   if (error) {
-    return <p className="error">{error}</p>;
+    return <p className="text-red-500 text-center mt-4">{error}</p>;
   }
 
-  const renderTable = (quizList = [], title, showPlayButton = false) => (
+  const renderTable = (quizList = [], title, showJoinButton = false) => (
     <div className="mb-8">
       <h2 className="text-2xl font-bold text-center text-[#00df9a] mb-4">{title}</h2>
       {quizList.length === 0 ? (
@@ -68,7 +68,7 @@ const ViewAllQuizzes = () => {
                 <th className="px-6 py-3">End Date</th>
                 <th className="px-6 py-3">Likes</th>
                 <th className="px-6 py-3">Total Participants</th>
-                {showPlayButton && <th className="px-6 py-3">Action</th>}
+                {showJoinButton && <th className="px-6 py-3">Action</th>}
               </tr>
             </thead>
             <tbody>
@@ -91,11 +91,14 @@ const ViewAllQuizzes = () => {
                   </td>
                   <td className="px-6 py-4">{quiz.likes || 0}</td>
                   <td className="px-6 py-4">{quiz.totalParticipants || 0}</td>
-                  {showPlayButton && (
+                  {showJoinButton && (
                     <td className="px-6 py-4">
-                      <button className="text-[#00df9a] hover:underline">
+                      <Link
+                        to={`/play/${quiz.id}`}
+                        className="bg-[#00df9a] text-gray-900 font-semibold py-1 px-4 rounded hover:bg-[#00b378] transition duration-300"
+                      >
                         Join
-                      </button>
+                      </Link>
                     </td>
                   )}
                 </tr>
