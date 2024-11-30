@@ -16,7 +16,7 @@ const Navbar = () => {
     };
 
   // List of routes where the menu should be hidden
-  const noMenuRoutes = ["/", "/login", "/register", "/password-reset", "/error"];
+  const noMenuRoutes = ["/", "/login", "/register", "/password-reset", "/reset-password","/error"];
 
   // Check if the current path matches any of the noMenuRoutes
   const shouldHideMenu = noMenuRoutes.includes(location.pathname);

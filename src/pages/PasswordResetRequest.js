@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const PasswordResetRequest = () => {
   const [email, setEmail] = useState("");
@@ -19,24 +22,53 @@ const PasswordResetRequest = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Password Reset</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Enter your email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button type="submit">Reset Password</button>
-      </form>
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+    <div>
+      <Navbar />
+      <div className="max-w-[1240px] mx-auto h-[70vh] items-center text-white flex justify-center bg-cover">
+        <div className="bg-slate-800 border border-slate-600 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-2xl bg-transparent bg-opacity-10 relative">
+          <form onSubmit={handleSubmit}>
+            <h1 className="text-4xl font-bold text-center mb-8">Password Reset</h1>
+            {successMessage && <p className="text-green-500 mb-4">{successMessage}</p>}
+            {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
+
+            <div className="relative my-4">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="block w-72 py-2.5 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-[#52529d] appearance-none dark:focus:border-[#00df9a] focus:outline-none focus:ring-0 focus:text-white focus:border-[#00df9a] peer cursor-pointer"
+                placeholder=" "
+              />
+              <label
+                htmlFor="email"
+                className="absolute text-sm duration-300 transform scale-75 -translate-y-6 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-valid:scale-75 peer-valid:-translate-y-6 peer-focus:text-[#00df9a]"
+              >
+                Enter your email
+              </label>
+            </div>
+
+            <div className="input-box mt-8">
+              <button
+                type="submit"
+                className="w-full mb-4 text-[18px] rounded bg-[#52529d] py-2 hover:bg-[#00df9a] transition-colors duration-300 cursor-pointer"
+              >
+                Reset Password
+              </button>
+            </div>
+            <div className="links text-xs flex justify-between items-center mt-4">
+            <Link to="/" className="hover:text-[#00df9a]">Back to Home</Link>
+            <Link to="/login" className="hover:text-[#00df9a]">Back to Login</Link>
+          </div>
+          </form>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
+
 
 export default PasswordResetRequest;
