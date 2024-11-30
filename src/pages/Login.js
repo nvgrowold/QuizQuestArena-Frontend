@@ -64,16 +64,18 @@ function Login() {
         <h1 className='text-4xl font-bold text-center mb-8'>Login</h1>
           {errorMessage && <p className="error">{errorMessage}</p>} {/* Display error message if any */}
           <div className="relative my-4">
-            <input type='text'className='block w-72 py-2.5 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-[#52529d] appearance-none dark:focus:border-[#00df9a] focus:outline-none focus:ring-0 focus:text-white focus:border-[#00df9a] peer' 
+            <input type='text'className='block w-72 py-2.5 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-[#52529d] appearance-none dark:focus:border-[#00df9a] focus:outline-none focus:ring-0 focus:text-white focus:border-[#00df9a] peer cursor-pointer' 
                   placeholder=''
                   value={username} // Bind value to username state
                   onChange={(e) => setUsername(e.target.value)} // Update state on input change
                   required
                   />
-            <label htmlFor='' className='absolute text-sm duration-300 transform -translate scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#00df9a] peer-focus:dark:text-[#00df9a] peer-placeholder-shown:scale-100 peer-valid:scale-75 peer-valid:-translate-y-6'>Username</label>
+            <label htmlFor=''  className="absolute text-sm duration-300 transform scale-75 -translate-y-6 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-valid:scale-75 peer-valid:-translate-y-6 peer-focus:text-[#00df9a]">
+                   Username
+            </label>
           </div>
           <div className="relative my-8">
-          <input type='password'className='block w-72 py-2.5 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-[#52529d] appearance-none dark:focus:border-[#00df9a] focus:outline-none focus:ring-0 focus:text-white focus:border-[#00df9a] peer' placeholder=''
+          <input type='password'className='block w-72 py-2.5 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-[#52529d] appearance-none dark:focus:border-[#00df9a] focus:outline-none focus:ring-0 focus:text-white focus:border-[#00df9a] peer cursor-pointer' placeholder=''
               pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$" 
               title="Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number."
               required
@@ -81,7 +83,9 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)} // Update state on input change
               disabled={loading} // Disable input when loading
               />
-                <label htmlFor='' className='absolute text-sm duration-300 transform -translate scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#00df9a] peer-focus:dark:text-[#00df9a] peer-placeholder-shown:scale-100 peer-valid:scale-75 peer-valid:-translate-y-6'>Your Password</label>
+                <label htmlFor='' className="absolute text-sm duration-300 transform scale-75 -translate-y-6 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-valid:scale-75 peer-valid:-translate-y-6 peer-focus:text-[#00df9a]">
+                  Your Password
+                </label>
           </div>
           <div className="input-box mt-8">
             <button
