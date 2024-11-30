@@ -1,0 +1,93 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg, #2d2d2d, #3a7bd5);
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage {
+    text-align: center;
+    padding: 40px 20px;
+    background: #1e1e2f;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 500px;
+    color: #ffffff;
+}
+
+/* Header Styles */
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #3a7bd5;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* Tagline */
+.tagline {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: #b3b3b3;
+}
+
+/* Navigation Links */
+.homepage-nav {
+    margin-top: 30px;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s, background-color 0.3s ease;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #3a7bd5;
+}
+
+.btn-primary:hover {
+    background-color: #3268a4;
+    transform: scale(1.1);
+}
+
+.btn-secondary {
+    background-color: #e91e63;
+}
+
+.btn-secondary:hover {
+    background-color: #d01757;
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .homepage {
+        width: 95%;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
