@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {AiOutlineClose, AiOutlineMenu} from 'react-icons/ai';
 import {useLocation, Link,  useNavigate} from 'react-router-dom';
 
-const Navbar = () => {
+const NavbarAdmin = () => {
     const[isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
@@ -47,15 +47,24 @@ const Navbar = () => {
       <h1 className='w-full text-3xl font-bold text-[#00df9a]'>QUIZ.</h1>
       {/* desktop menu */}
       {!shouldHideMenu && (
-        <ul className='hidden md:flex'>
+        <ul className='hidden md:flex items-center'>
         <li className='p-4 hover:text-[#00df9a] cursor-pointer'>
             <Link to="/" >Home</Link>
           </li>
-          <li className='p-4 hover:text-[#00df9a] cursor-pointer'>
-            <Link to="/userProfile">Profile</Link>
+          <li className="p-4 hover:text-[#00df9a] cursor-pointer">
+            <Link to="/adminProfile" onClick={handleMenuItemClick}>
+              Profile
+            </Link>
           </li>
-          <li className='p-4 hover:text-[#00df9a] cursor-pointer'>
-            <Link to="/viewAllQuizzes">Quiz</Link>
+          <li className="p-4  hover:text-[#00df9a] cursor-pointer">
+            <Link to="/createQuiz" onClick={handleMenuItemClick}>
+              Create Quiz
+            </Link>
+          </li>
+          <li className="p-4 hover:text-[#00df9a] cursor-pointer">
+            <Link to="/manageQuizzes" onClick={handleMenuItemClick}>
+              Manage Quizzes
+            </Link>
           </li>
           <li className='p-4 hover:text-[#00df9a] cursor-pointer'>
             <Link to="/quizScoresRanking">Score</Link>
@@ -87,13 +96,18 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="p-4 border-b border-gray-600  hover:text-[#00df9a] cursor-pointer">
-            <Link to="/userProfile" onClick={handleMenuItemClick}>
+            <Link to="/adminProfile" onClick={handleMenuItemClick}>
               Profile
             </Link>
           </li>
           <li className="p-4 border-b border-gray-600  hover:text-[#00df9a] cursor-pointer">
-            <Link to="/viewAllQuizzes" onClick={handleMenuItemClick}>
-              Quiz
+            <Link to="/createQuiz" onClick={handleMenuItemClick}>
+              Create Quiz
+            </Link>
+          </li>
+          <li className="p-4 border-b border-gray-600  hover:text-[#00df9a] cursor-pointer">
+            <Link to="/manageQuizzes" onClick={handleMenuItemClick}>
+              Manage Quizzes
             </Link>
           </li>
           <li className="p-4 border-b border-gray-600  hover:text-[#00df9a] cursor-pointer">
@@ -112,4 +126,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarAdmin;
