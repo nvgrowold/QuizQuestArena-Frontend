@@ -27,23 +27,26 @@ const QuizScoresRanking = () => {
       }
     };
 
+
     // Fetch scores from the REST API
-    fetch("/api/quizzes/quizScoresRanking")
-      .then((response) => {
+    const fetchScores = async () => {
+      try {
+        const response = await fetch("/api/quizzes/quizScoresRanking");
         if (!response.ok) {
           throw new Error("Failed to fetch quiz scores.");
         }
-        return response.json();
-      })
-      .then((data) => {
+        const data = await response.json();
         setScores(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false);
-      });
-  }, []);
+      }
+    };    
+      // Fetch both user role and scores
+      fetchUserRole();
+      fetchScores();
+    }, []);
 
   if (loading) {
     return <p className="text-[#00df9a] text-center mt-4">Loading quiz scores...</p>;
