@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactTyped as Typed } from 'react-typed'; //npm install react-typed --save
 import Navbar from '../components/Navbar';
+import './Home.css';
+
 
 const HomePage = () => {
     return (
