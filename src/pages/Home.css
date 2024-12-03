@@ -1,0 +1,116 @@
+/* General styling for the entire page */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #1a1a1a; /* Dark background for contrast */
+    color: white;
+}
+
+/* Centering the content and styling the container */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Styled paragraph for the introduction */
+.intro-text {
+    color: #00df9a; /* Vibrant green */
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    text-transform: uppercase;
+}
+
+/* Main title styling */
+.main-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+    .main-title {
+        font-size: 5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .main-title {
+        font-size: 6rem;
+    }
+}
+
+/* Subtext and dynamic typing area */
+.dynamic-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.dynamic-typed {
+    color: #00df9a;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    font-weight: bold;
+}
+
+@media (min-width: 640px) {
+    .dynamic-text {
+        font-size: 2rem;
+    }
+
+    .dynamic-typed {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .dynamic-typed {
+        font-size: 3rem;
+    }
+}
+
+/* Supporting text below the main title */
+.sub-text {
+    font-size: 1rem;
+    color: #b0b0b0; /* Gray text for softer appearance */
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .sub-text {
+        font-size: 1.25rem;
+    }
+}
+
+/* Button styling */
+.start-btn {
+    background-color: #00df9a;
+    color: black;
+    font-weight: medium;
+    border-radius: 0.375rem;
+    padding: 0.75rem 1.5rem;
+    margin: 1.5rem auto;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.start-btn:hover {
+    background-color: #00af7c;
+}
+
+.start-btn a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
